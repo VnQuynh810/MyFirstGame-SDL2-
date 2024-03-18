@@ -1,6 +1,6 @@
 # depslib dependency file v1.0
-1710322342 source:e:\hoc\code\my_first_game(sdl_based)\main.cpp
-	<bits/stdc++.h>
+1710659387 source:e:\hoc\code\my_first_game(sdl_based)\main.cpp
+	<SDL.h>
 	"ComFun.h"
 	"BaseObj.h"
 
@@ -397,11 +397,10 @@
 	"begin_code.h"
 	"close_code.h"
 
-1710320307 source:e:\hoc\code\my_first_game(sdl_based)\comfun.cpp
+1710659433 source:e:\hoc\code\my_first_game(sdl_based)\comfun.cpp
 	"ComFun.h"
-	<bits/stdc++.h>
 
-1710321522 e:\hoc\code\my_first_game(sdl_based)\comfun.h
+1710659474 e:\hoc\code\my_first_game(sdl_based)\comfun.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<windows.h>
@@ -428,7 +427,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1710322138 source:e:\hoc\code\my_first_game(sdl_based)\baseobj.cpp
+1710659699 source:e:\hoc\code\my_first_game(sdl_based)\baseobj.cpp
 	<bits/stdc++.h>
 	"BaseObj.h"
 
@@ -458,5 +457,17 @@
 
 1710322138 e:\hoc\code\my_first_game(sdl_based)\baseobj.cpp
 	<bits/stdc++.h>
+	"BaseObj.h"
+
+1710658668 source:e:\hoc\code\my_first_game(sdl_based)\display.cpp
+	"Display.h"
+
+1710658668 e:\hoc\code\my_first_game(sdl_based)\display.h
+
+1710659433 source:e:\hoc\code\my_first_game(sdl_based)\game.cpp
+	"Game.h"
+
+1710659244 e:\hoc\code\my_first_game(sdl_based)\game.h
+	"ComFun.h"
 	"BaseObj.h"
 

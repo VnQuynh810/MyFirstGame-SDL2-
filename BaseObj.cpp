@@ -1,14 +1,9 @@
 #include <bits/stdc++.h>
 #include "BaseObj.h"
 
-BaseObject::BaseObject()
-{
-    pObject = NULL;
-    _rect.x = 0;
-    _rect.y = 0;
-    _rect.w = 0;
-    _rect.h = 0;
-}
+BaseObject::BaseObject() : pObject(NULL), _rect({0, 0, 0, 0}) {}
+
+
 BaseObject::~BaseObject()
 {
     Free();

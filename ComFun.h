@@ -5,6 +5,7 @@
 #include <SDL_mixer.h>
 #include <SDL_image.h>
 
+
 static SDL_Window* gWindow = NULL;
 static SDL_Renderer* gScreen = NULL;
 static SDL_Event gEvent;
@@ -21,3 +22,15 @@ const int COLOR_KEY_G = 175;
 const int COLOR_KEY_B = 180;
 
 const int RENDER_DRAW_COLOR = 0Xff;
+
+
+bool InitSDL();
+void QuitSDL();
+SDL_Texture* LoadTexture(SDL_Renderer* renderer, std::string path);
+
+typedef struct Input ()
+{
+    int left;
+    int right;
+    int shoot;
+};

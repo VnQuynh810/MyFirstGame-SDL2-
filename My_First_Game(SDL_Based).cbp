@@ -47,7 +47,13 @@
 		<Unit filename="BaseObj.h" />
 		<Unit filename="ComFun.cpp" />
 		<Unit filename="ComFun.h" />
+		<Unit filename="Display.cpp" />
+		<Unit filename="Display.h" />
+		<Unit filename="Game.cpp" />
+		<Unit filename="Game.h" />
 		<Unit filename="My_First_Game(SDL_Based).layout" />
+		<Unit filename="PLayer.h" />
+		<Unit filename="Player.cpp" />
 		<Unit filename="SDL2.dll" />
 		<Unit filename="SDL2_image.dll" />
 		<Unit filename="SDL2_mixer.dll" />
