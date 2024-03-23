@@ -21,6 +21,9 @@ bool Game::Init() {
 
 bool Game::LoadResources() {
     bool r = gBackground.LoadImg("pic//background.png", gScreen);
+
+    player1.LoadImg("pic//Dove.png",gScreen);
+//    player1.set_clips();
     if (!r) return false;
     return true;
 }
@@ -38,17 +41,30 @@ void Game::Run() {
 
     bool isQuit = false;
     while (!isQuit) {
+            Uint32 startTime = SDL_GetTicks();
         while (SDL_PollEvent(&gEvent) != 0) {
             if (gEvent.type == SDL_QUIT) {
                 isQuit = true;
             }
+
+            player1.HandleInput(gEvent,gScreen);
         }
         SDL_SetRenderDrawColor(gScreen, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR);
         SDL_RenderClear(gScreen);
 
         gBackground.Render(gScreen, NULL);
 
+        player1.Show(gScreen);
+        player1.Update();
+
         SDL_RenderPresent(gScreen);
+
+        Uint32 endTime = SDL_GetTicks();
+        Uint32 elapsedTime = endTime - startTime;
+        if (elapsedTime < FRAME_DELAY)
+        {
+            SDL_Delay(FRAME_DELAY - elapsedTime);
+        }
     }
     Close();
 }

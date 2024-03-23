@@ -10,6 +10,7 @@ static SDL_Window* gWindow = NULL;
 static SDL_Renderer* gScreen = NULL;
 static SDL_Event gEvent;
 
+const int FRAME_DELAY = 20;
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 640;
 const int SCREEN_BPP = 32;
@@ -28,9 +29,10 @@ bool InitSDL();
 void QuitSDL();
 SDL_Texture* LoadTexture(SDL_Renderer* renderer, std::string path);
 
-typedef struct Input ()
+typedef struct Input
 {
     int left;
     int right;
-    int shoot;
-};
+    int up;
+    int down;
+} Input;

@@ -471,3 +471,135 @@
 	"ComFun.h"
 	"BaseObj.h"
 
+1710776279 source:c:\users\no name\desktop\sdl_game\myfirstgame-sdl2-\baseobj.cpp
+	<bits/stdc++.h>
+	"BaseObj.h"
+
+1710776279 c:\users\no name\desktop\sdl_game\myfirstgame-sdl2-\baseobj.h
+	<bits/stdc++.h>
+	"ComFun.h"
+
+1710873112 c:\users\no name\desktop\sdl_game\myfirstgame-sdl2-\comfun.h
+	<bits/stdc++.h>
+	<SDL.h>
+	<windows.h>
+	<SDL_image.h>
+
+1710776279 source:c:\users\no name\desktop\sdl_game\myfirstgame-sdl2-\comfun.cpp
+	"ComFun.h"
+
+1710776279 source:c:\users\no name\desktop\sdl_game\myfirstgame-sdl2-\display.cpp
+	"Display.h"
+
+1710776279 c:\users\no name\desktop\sdl_game\myfirstgame-sdl2-\display.h
+
+1710860039 source:c:\users\no name\desktop\sdl_game\myfirstgame-sdl2-\game.cpp
+	"Game.h"
+
+1710860040 c:\users\no name\desktop\sdl_game\myfirstgame-sdl2-\game.h
+	"ComFun.h"
+	"Player.h"
+
+1710857856 source:c:\users\no name\desktop\sdl_game\myfirstgame-sdl2-\main.cpp
+	"Game.h"
+
+1710873209 source:c:\users\no name\desktop\sdl_game\myfirstgame-sdl2-\player.cpp
+	"Player.h"
+
+1710873238 c:\users\no name\desktop\sdl_game\myfirstgame-sdl2-\player.h
+	"BaseObj.h"
+
+1710776279 source:c:\users\no name\desktop\trest\myfirstgame-sdl2-\display.cpp
+	"Display.h"
+
+1710776279 c:\users\no name\desktop\trest\myfirstgame-sdl2-\display.h
+
+1710898355 source:c:\users\no name\desktop\trest\myfirstgame-sdl2-\main.cpp
+	"Game.h"
+
+1710901661 c:\users\no name\desktop\trest\myfirstgame-sdl2-\game.h
+	"ComFun.h"
+	"BaseObj.h"
+	"PLayer.h"
+
+1710996376 c:\users\no name\desktop\trest\myfirstgame-sdl2-\comfun.h
+	<bits/stdc++.h>
+	<SDL.h>
+	<windows.h>
+	<SDL_mixer.h>
+	<SDL_image.h>
+
+1710901661 c:\users\no name\desktop\trest\myfirstgame-sdl2-\baseobj.h
+	<bits/stdc++.h>
+	"ComFun.h"
+
+1710996953 source:c:\users\no name\desktop\trest\myfirstgame-sdl2-\player.cpp
+	"PLayer.h"
+
+1710995511 c:\users\no name\desktop\trest\myfirstgame-sdl2-\player.h
+	"BaseObj.h"
+	"Bullet.h"
+
+1710897783 source:c:\users\no name\desktop\trest\myfirstgame-sdl2-\baseobj.cpp
+	<bits/stdc++.h>
+	"BaseObj.h"
+
+1710897783 source:c:\users\no name\desktop\trest\myfirstgame-sdl2-\comfun.cpp
+	"ComFun.h"
+
+1710996376 source:c:\users\no name\desktop\trest\myfirstgame-sdl2-\game.cpp
+	"Game.h"
+
+1710995625 c:\users\no name\desktop\trest\myfirstgame-sdl2-\bullet.h
+	"BaseObj.h"
+
+1710995830 source:c:\users\no name\desktop\trest\myfirstgame-sdl2-\bullet.cpp
+	"Bullet.h"
+
+1710897784 source:c:\users\my pc\desktop\myfirstgame-sdl2-\baseobj.cpp
+	<bits/stdc++.h>
+	"BaseObj.h"
+
+1710901662 c:\users\my pc\desktop\myfirstgame-sdl2-\baseobj.h
+	<bits/stdc++.h>
+	"ComFun.h"
+
+1710996378 c:\users\my pc\desktop\myfirstgame-sdl2-\comfun.h
+	<bits/stdc++.h>
+	<SDL.h>
+	<windows.h>
+	<SDL_mixer.h>
+	<SDL_image.h>
+
+1710995832 source:c:\users\my pc\desktop\myfirstgame-sdl2-\bullet.cpp
+	"Bullet.h"
+
+1710995626 c:\users\my pc\desktop\myfirstgame-sdl2-\bullet.h
+	"BaseObj.h"
+
+1710897784 source:c:\users\my pc\desktop\myfirstgame-sdl2-\comfun.cpp
+	"ComFun.h"
+
+1710776280 source:c:\users\my pc\desktop\myfirstgame-sdl2-\display.cpp
+	"Display.h"
+
+1710776280 c:\users\my pc\desktop\myfirstgame-sdl2-\display.h
+
+1710996378 source:c:\users\my pc\desktop\myfirstgame-sdl2-\game.cpp
+	"Game.h"
+
+1710901662 c:\users\my pc\desktop\myfirstgame-sdl2-\game.h
+	"ComFun.h"
+	"BaseObj.h"
+	"PLayer.h"
+
+1710995512 c:\users\my pc\desktop\myfirstgame-sdl2-\player.h
+	"BaseObj.h"
+	"Bullet.h"
+
+1710898356 source:c:\users\my pc\desktop\myfirstgame-sdl2-\main.cpp
+	"Game.h"
+
+1710997028 source:c:\users\my pc\desktop\myfirstgame-sdl2-\player.cpp
+	"PLayer.h"
+

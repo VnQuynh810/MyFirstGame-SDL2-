@@ -45,6 +45,8 @@
 		</Linker>
 		<Unit filename="BaseObj.cpp" />
 		<Unit filename="BaseObj.h" />
+		<Unit filename="Bullet.cpp" />
+		<Unit filename="Bullet.h" />
 		<Unit filename="ComFun.cpp" />
 		<Unit filename="ComFun.h" />
 		<Unit filename="Display.cpp" />
