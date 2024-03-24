@@ -471,3 +471,58 @@
 	"ComFun.h"
 	"BaseObj.h"
 
+1711192200 source:e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\baseobj.cpp
+	<bits/stdc++.h>
+	"BaseObj.h"
+
+1711192200 e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\baseobj.h
+	<bits/stdc++.h>
+	"ComFun.h"
+
+1711267530 e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\comfun.h
+	<bits/stdc++.h>
+	<SDL.h>
+	<windows.h>
+	<SDL_mixer.h>
+	<SDL_image.h>
+
+1711192200 source:e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\comfun.cpp
+	"ComFun.h"
+
+1710658668 source:e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\display.cpp
+	"Display.h"
+
+1710658668 e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\display.h
+
+1711273384 source:e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\game.cpp
+	"Game.h"
+
+1711271120 e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\game.h
+	"ComFun.h"
+	"BaseObj.h"
+	"PLayer.h"
+	"Enemies.h"
+
+1710659730 source:e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\main.cpp
+	"Game.h"
+
+1711273410 source:e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\player.cpp
+	"PLayer.h"
+
+1711192200 e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\player.h
+	"BaseObj.h"
+	"Bullet.h"
+
+1711192200 e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\bullet.h
+	"BaseObj.h"
+
+1711192200 source:e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\bullet.cpp
+	"Bullet.h"
+
+1711272437 source:e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\enemies.cpp
+	"Enemies.h"
+
+1711269754 e:\hoc\code\advanced programing\my_first_game(sdl_based) - copy\enemies.h
+	"BaseObj.h"
+	"ComFun.h"
+

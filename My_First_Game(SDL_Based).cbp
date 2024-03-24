@@ -45,10 +45,14 @@
 		</Linker>
 		<Unit filename="BaseObj.cpp" />
 		<Unit filename="BaseObj.h" />
+		<Unit filename="Bullet.cpp" />
+		<Unit filename="Bullet.h" />
 		<Unit filename="ComFun.cpp" />
 		<Unit filename="ComFun.h" />
 		<Unit filename="Display.cpp" />
 		<Unit filename="Display.h" />
+		<Unit filename="Enemies.cpp" />
+		<Unit filename="Enemies.h" />
 		<Unit filename="Game.cpp" />
 		<Unit filename="Game.h" />
 		<Unit filename="My_First_Game(SDL_Based).layout" />
