@@ -44,13 +44,20 @@ void Game::Run() {
     if (!Init()) return;
     if (!LoadResources()) return;
 
+    player1.Update();
 
-        player1.Update();
 
-        threat1->set_y_val(5);
+    int rand_x = rand()%400;
+    if(rand_x > SCREEN_WIDTH)
+    {
+        rand_x = SCREEN_WIDTH*0.2;
+    }
 
-        Bullet* tBullet = new Bullet();
-        threat1->InitBullet(tBullet,gScreen);
+    threat1->SetRect(rand_x,SCREEN_HEIGHT);
+    threat1->set_y_val(5);
+
+    Bullet* tBullet = new Bullet();
+    threat1->InitBullet(tBullet,gScreen);
 
     bool isQuit = false;
     while (!isQuit) {

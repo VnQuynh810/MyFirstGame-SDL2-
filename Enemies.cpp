@@ -59,6 +59,11 @@ void Enemies::Update(const int& x_bor, const int &y_bor)
     if(_rect.y > SCREEN_HEIGHT )
     {
         _rect.y = 0;
-
+        int rand_x = rand()%400;
+        if(rand_x > SCREEN_WIDTH)
+        {
+            rand_x = SCREEN_WIDTH*0.2;
+        }
+        _rect.x = rand_x;
     }
 }
