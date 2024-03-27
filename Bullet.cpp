@@ -17,11 +17,20 @@ Bullet::~Bullet()
 
 void Bullet::Update(const int& x_border, const int& y_border)
 {
-    _rect.y -= 20;
+    _rect.y -= 3;
     if (_rect.y > y_border)
     {
         is_move = false;
 
+    }
+}
+
+void Bullet::UpdateUpDown()
+{
+    _rect.y -= 10;
+    if(_rect.y > SCREEN_HEIGHT)
+    {
+        is_move = false;
     }
 }
 

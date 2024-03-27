@@ -8,12 +8,12 @@ bool Game::Init() {
     if (!InitSDL()) return false;
     gWindow = SDL_CreateWindow("Space Invader", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (gWindow == NULL) {
-        printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+        std::cout << "Window could not be created! SDL_Error: "<< SDL_GetError();
         return false;
     }
     gScreen = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
     if (gScreen == NULL) {
-        printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+        std::cout <<"Renderer could not be created! SDL Error: " << SDL_GetError();
         return false;
     }
     return true;
@@ -22,8 +22,13 @@ bool Game::Init() {
 bool Game::LoadResources() {
     bool r = gBackground.LoadImg("pic//background.png", gScreen);
 
-    player1.LoadImg("pic//player.png",gScreen);
-//    player1.set_clips();
+    r = player1.LoadImg("pic//player.png",gScreen);
+
+    //Enemies 1 initialization
+    threat1 = new Enemies();
+    r =  threat1->LoadImg("pic//Threat1.png",gScreen);
+
+//  player1.set_clips();
     if (!r) return false;
     return true;
 }
@@ -42,9 +47,10 @@ void Game::Run() {
 
         player1.Update();
 
-        threat1 = new Enemies();
-        threat1->LoadImg("pic//Threat1.png",gScreen);
-        threat1->set_x_val(5);
+        threat1->set_y_val(5);
+
+        Bullet* tBullet = new Bullet();
+        threat1->InitBullet(tBullet,gScreen);
 
     bool isQuit = false;
     while (!isQuit) {
@@ -56,7 +62,7 @@ void Game::Run() {
 
             player1.HandleInput(gEvent,gScreen);
         }
-        SDL_SetRenderDrawColor(gScreen, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR);
+        SDL_SetRenderDrawColor(gScreen, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR);//Make background of the image transparent
         SDL_RenderClear(gScreen);
 
         gBackground.Render(gScreen, NULL);
@@ -93,7 +99,9 @@ void Game::Run() {
        threat1->Render(gScreen,NULL);
        threat1->Update(SCREEN_WIDTH,SCREEN_HEIGHT);
 
-        SDL_RenderPresent(gScreen);
+       threat1->MakeBullet(gScreen,SCREEN_HEIGHT,SCREEN_WIDTH);
+
+       SDL_RenderPresent(gScreen);
 
        // Uint32 endTime = SDL_GetTicks();
        // Uint32 elapsedTime = endTime - startTime;

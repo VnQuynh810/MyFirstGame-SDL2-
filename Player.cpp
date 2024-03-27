@@ -107,14 +107,16 @@ void Player::HandleInput(SDL_Event event,SDL_Renderer* screen) {
             pBullet ->SetWidthHeight(WIDTH_LASER,HEIGHT_LASER);
             pBullet->LoadImg("pic//laser.png",screen);
             pBullet ->set_type(Bullet::LASER);
+            pBullet->SetRect(this->_rect.x + 20 , this -> _rect.y - 20);
         }
         else if(event.button.button == SDL_BUTTON_RIGHT)
         {
             pBullet ->SetWidthHeight(WIDTH_SPHERE,HEIGHT_SPHERE);
             pBullet->LoadImg("pic//sphere.png",screen);
             pBullet ->set_type(Bullet::SPHERE);
+               pBullet->SetRect(this->_rect.x + 10 , this -> _rect.y - 20);
         }
-        pBullet->SetRect(this->_rect.x + 10 , this -> _rect.y - 20);
+
         pBullet ->set_is_move(true);
 
         pBullet_list.push_back(pBullet);

@@ -4,8 +4,8 @@
 #define WIDTH_LASER 35
 #define HEIGHT_LASER 5
 
-#define WIDTH_SPHERE 10
-#define HEIGHT_SPHERE 10
+#define WIDTH_SPHERE 18
+#define HEIGHT_SPHERE 21
 
 class Bullet : public BaseObject
 {
@@ -22,7 +22,7 @@ public:
 
     void HandleInput(SDL_Event events );
     void Update(const int& x_border, const int& y_border);
-
+    void UpdateUpDown();
     int get_type() const {return amo_type;};
     void set_type(const int& type) {amo_type = type;};
 

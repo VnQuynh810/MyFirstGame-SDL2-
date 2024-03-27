@@ -6,12 +6,10 @@
 #include <SDL_image.h>
 
 
-static SDL_Window* gWindow = NULL;
-static SDL_Renderer* gScreen = NULL;
-static SDL_Event gEvent;
+
 
 const int FRAME_DELAY = 20;
-const int SCREEN_WIDTH = 1000;
+const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 640;
 const int SCREEN_BPP = 32;
 static SDL_Surface* gScreenSurface = NULL;
