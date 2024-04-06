@@ -27,7 +27,8 @@ void Bullet::Update(const int& x_border, const int& y_border)
 
 void Bullet::UpdateUpDown()
 {
-    _rect.y -= 10;
+    _rect.y += 6;
+
     if(_rect.y > SCREEN_HEIGHT)
     {
         is_move = false;

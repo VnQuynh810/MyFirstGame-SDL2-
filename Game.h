@@ -4,6 +4,8 @@
 #include"PLayer.h"
 #include "Enemies.h"
 
+#define NUM_THREAT 4
+
 class Game {
 public:
     Game();
@@ -19,5 +21,6 @@ private:
     SDL_Event gEvent;
     BaseObject gBackground;
     Player player1;
-    Enemies* threat1;
+    Enemies* threats1 = new Enemies[NUM_THREAT];
+    int back_y;
 };

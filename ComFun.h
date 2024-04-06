@@ -5,16 +5,10 @@
 #include <SDL_mixer.h>
 #include <SDL_image.h>
 
-
-
-
 const int FRAME_DELAY = 20;
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 640;
+const int SCREEN_WIDTH = 840;
+const int SCREEN_HEIGHT = 1016;
 const int SCREEN_BPP = 32;
-static SDL_Surface* gScreenSurface = NULL;
-static SDL_Surface* gHelloWorld = NULL;
-static SDL_Surface* gXOut = NULL;
 
 const int COLOR_KEY_R = 1;
 const int COLOR_KEY_G = 18;

@@ -11,7 +11,19 @@ Enemies::Enemies()
 }
 Enemies:: ~Enemies()
 {
-
+    if(tBullet_list.size() > 0);
+    {
+        for(int i = 0; i < tBullet_list.size(); i++)
+        {
+            Bullet* tBullet = tBullet_list.at(i);
+            if(tBullet != NULL)
+            {
+                delete tBullet;
+                tBullet = NULL;
+            }
+        }
+        tBullet_list.clear();
+    }
 }
 
 void Enemies::InitBullet(Bullet* tBullet,SDL_Renderer* screen)
@@ -26,7 +38,7 @@ void Enemies::InitBullet(Bullet* tBullet,SDL_Renderer* screen)
             tBullet->SetRect(WIDTH_SPHERE,HEIGHT_SPHERE);
             tBullet->SetWidthHeight(WIDTH_SPHERE,HEIGHT_SPHERE);
             tBullet->set_type(Bullet::SPHERE);
-            tBullet->SetRect(_rect.x,_rect.y+_rect.h/2);
+            tBullet->SetRect(_rect.x + _rect.w/2,_rect.y);
             tBullet_list.push_back(tBullet);
         }
     }
