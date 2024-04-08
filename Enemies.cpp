@@ -79,3 +79,33 @@ void Enemies::Update(const int& x_bor, const int &y_bor)
         _rect.x = rand_x;
     }
 }
+
+void Enemies::Reset(const int& yborder)
+{
+    _rect.y = yborder;
+    _rect.y = SCREEN_HEIGHT;
+
+    int rand_x = rand()%400;
+        if(rand_x > SCREEN_WIDTH)
+        {
+            rand_x = SCREEN_WIDTH*0.2;
+        }
+        _rect.x = rand_x;
+
+        for (int i = 0; i < tBullet_list.size();i++)
+        {
+            Bullet* tBullet = tBullet_list.at(i);
+
+            if(tBullet)
+            {
+                ResetBullet(tBullet);
+            }
+        }
+
+}
+
+void Enemies::ResetBullet(Bullet* tBullet)
+{
+    tBullet->SetRect(_rect.x + _rect.w/2,_rect.y);
+
+}

@@ -15,6 +15,8 @@ public:
 
     void setBulletList(std::vector<Bullet*> bullet_list) {pBullet_list = bullet_list;};
     std::vector<Bullet*> GetBulletList() const {return pBullet_list;};
+    void RemoveBullet(const int& idx);
+
 private:
     static const int PLAYER_SPEED = 5;
     int x_val, y_val;

@@ -53,6 +53,8 @@
 		<Unit filename="Display.h" />
 		<Unit filename="Enemies.cpp" />
 		<Unit filename="Enemies.h" />
+		<Unit filename="Explosion.cpp" />
+		<Unit filename="Explosion.h" />
 		<Unit filename="Game.cpp" />
 		<Unit filename="Game.h" />
 		<Unit filename="My_First_Game(SDL_Based).layout" />

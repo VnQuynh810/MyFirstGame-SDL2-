@@ -142,7 +142,25 @@ void Player::Update()
     {
         _rect.y -= y_val;
     }
+}
 
+void Player::RemoveBullet(const int& idx)
+{
+    for(int i = 0; i < pBullet_list.size(); i++)
+    {
+        if(idx < pBullet_list.size()){
+            Bullet* pBullet = pBullet_list.at(idx);
+            pBullet_list.erase(pBullet_list.begin() + idx);
+
+
+            if(pBullet != NULL)
+            {
+                delete pBullet;
+                pBullet = NULL;
+            }
+        }
+    }
 
 }
+
 

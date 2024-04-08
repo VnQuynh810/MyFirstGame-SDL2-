@@ -3,6 +3,7 @@
 #include "BaseObj.h"
 #include"PLayer.h"
 #include "Enemies.h"
+#include "Explosion.h"
 
 #define NUM_THREAT 4
 
@@ -23,4 +24,5 @@ private:
     Player player1;
     Enemies* threats1 = new Enemies[NUM_THREAT];
     int back_y;
+    Explosion p1Boom;
 };

@@ -1,8 +1,8 @@
 #pragma once
 #include "BaseObj.h"
 
-#define WIDTH_LASER 35
-#define HEIGHT_LASER 5
+#define WIDTH_LASER 11
+#define HEIGHT_LASER 41
 
 #define WIDTH_SPHERE 18
 #define HEIGHT_SPHERE 21

@@ -24,10 +24,9 @@ bool Game::LoadResources() {
 
     r = player1.LoadImg("pic//player.png",gScreen);
 
-    //Enemies 1 initialization
+    p1Boom.LoadImg("pic//Explosion.png",gScreen);
+    p1Boom.set_clip();
 
-
-//  player1.set_clips();
     if (!r) return false;
     return true;
 }
@@ -51,7 +50,7 @@ void Game::Run() {
         bool r =  threat1->LoadImg("pic//Threat1.png",gScreen);
         if(r == false) return;
 
-        int rand_x = rand()%400;
+        int rand_x = rand()%800;
         if(rand_x > SCREEN_WIDTH)
         {
             rand_x = SCREEN_WIDTH*0.2;
@@ -66,7 +65,7 @@ void Game::Run() {
 
     bool isQuit = false;
     while (!isQuit) {
-          //  Uint32 startTime = SDL_GetTicks();
+        //  Uint32 startTime = SDL_GetTicks();
         while (SDL_PollEvent(&gEvent) != 0) {
             if (gEvent.type == SDL_QUIT) {
                 isQuit = true;
@@ -91,7 +90,7 @@ void Game::Run() {
         player1.Show(gScreen);
         player1.Update();
 
-          for(int i = 0;i < player1.GetBulletList().size();i++)
+        for(int i = 0;i < player1.GetBulletList().size();i++)
         {
             std::vector<Bullet*> bullet_list = player1.GetBulletList();
             Bullet* pBullet = bullet_list.at(i);
@@ -117,30 +116,87 @@ void Game::Run() {
             }
         }
 
-
         for(int j = 0;j < NUM_THREAT;j++)
         {
             Enemies* threat1 = (threats1 + j);
             if(threat1)
             {
-                threat1->Render(gScreen,NULL);
                 threat1->Update(SCREEN_WIDTH,SCREEN_HEIGHT);
-                threat1->MakeBullet(gScreen,SCREEN_HEIGHT,SCREEN_WIDTH);
-            }
+                threat1->Render(gScreen,NULL);
 
+                threat1->MakeBullet(gScreen,SCREEN_HEIGHT,SCREEN_WIDTH);
+
+
+                std::vector<Bullet*> tbullet_list = threat1->GetBulletList();
+                for (int b = 0; b < tbullet_list.size(); b++)
+                {
+                    Bullet* tBullet = tbullet_list.at(b);
+
+                    if(tBullet != NULL)
+                    {
+                        bool hit = CheckColli(tBullet->GetRect(),player1.GetRect());
+                        if(hit)
+                        {
+                            player1.SetRect(SCREEN_WIDTH/2, SCREEN_HEIGHT - SCREEN_HEIGHT/6);
+                        }
+                    }
+                }
+
+                bool is_col = CheckColli(player1.GetRect(), threat1->GetRect());
+                if(is_col)
+                {
+                    for(int ex = 0;ex < 6;ex++)
+                    {
+                        int x_pos = (player1.GetRect().x + player1.GetRect().w/2) - EXP_W/2;
+                        int y_pos = (player1.GetRect().y + player1.GetRect().h/2) - EXP_H/2;
+
+                        p1Boom.set_frame(ex);
+                        p1Boom.SetRect(x_pos, y_pos);
+                        p1Boom.ShowEx(gScreen);
+                        SDL_Delay(100);
+
+                        SDL_RenderPresent(gScreen);
+
+                    }
+
+                    if( MessageBoxW(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+                    {
+                        delete[] threats1;
+                        Close();
+                        return;
+                    }
+                }
+
+                std::vector<Bullet*> bullet_list = player1.GetBulletList();
+                for (int b = 0; b < bullet_list.size(); b++)
+                {
+                    Bullet* pBullet = bullet_list.at(b);
+
+                    if(pBullet != NULL)
+                    {
+                        bool rc = CheckColli(pBullet->GetRect(),threat1->GetRect());
+                       if(rc)
+                       {
+                           threat1->Reset(SCREEN_HEIGHT - j*500);
+                           player1.RemoveBullet(b);
+                       }
+                    }
+                }
+            }
         }
 
+        SDL_RenderPresent(gScreen);
 
-
-       SDL_RenderPresent(gScreen);
-
-       // Uint32 endTime = SDL_GetTicks();
-       // Uint32 elapsedTime = endTime - startTime;
-       // if (elapsedTime < FRAME_DELAY)
+        // Uint32 endTime = SDL_GetTicks();
+        // Uint32 elapsedTime = endTime - startTime;
+        // if (elapsedTime < FRAME_DELAY)
         {
             SDL_Delay(10);
         }
     }
+
     delete[] threats1;
+
     Close();
 }
+

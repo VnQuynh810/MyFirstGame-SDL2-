@@ -28,3 +28,5 @@ typedef struct Input
     int up;
     int down;
 } Input;
+
+bool CheckColli(const SDL_Rect& object1,const SDL_Rect& object2);
