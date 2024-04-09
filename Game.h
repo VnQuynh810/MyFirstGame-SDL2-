@@ -25,4 +25,6 @@ private:
     Enemies* threats1 = new Enemies[NUM_THREAT];
     int back_y;
     Explosion p1Boom;
+    bool invincible = false;
+    Uint32 invincibleTime;
 };

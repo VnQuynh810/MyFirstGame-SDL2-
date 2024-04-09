@@ -6,6 +6,7 @@ Game::~Game() {}
 
 bool Game::Init() {
     if (!InitSDL()) return false;
+
     gWindow = SDL_CreateWindow("Space Invader", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (gWindow == NULL) {
         std::cout << "Window could not be created! SDL_Error: "<< SDL_GetError();
@@ -26,6 +27,12 @@ bool Game::LoadResources() {
 
     p1Boom.LoadImg("pic//Explosion.png",gScreen);
     p1Boom.set_clip();
+
+    //load audio
+    if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT,2 , 4096) < 0 ) return false;
+ //   g_sound_music = Mix_LoadMUSMusic("audio//music.ogg");
+    g_sound_bullet = Mix_LoadWAV("audio//playerShoot.wav");
+    g_sound_exp = Mix_LoadWAV("audio//Boom.wav");
 
     if (!r) return false;
     return true;
@@ -65,13 +72,13 @@ void Game::Run() {
 
     bool isQuit = false;
     while (!isQuit) {
-        //  Uint32 startTime = SDL_GetTicks();
+
         while (SDL_PollEvent(&gEvent) != 0) {
             if (gEvent.type == SDL_QUIT) {
                 isQuit = true;
             }
 
-            player1.HandleInput(gEvent,gScreen);
+            player1.HandleInput(gEvent,gScreen,g_sound_bullet);
         }
         SDL_SetRenderDrawColor(gScreen, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR);//Make background of the image transparent
         SDL_RenderClear(gScreen);
@@ -116,6 +123,16 @@ void Game::Run() {
             }
         }
 
+        //xu li trang thai bat tu cua player
+        if (invincible)
+        {
+            Uint32 currentTime = SDL_GetTicks();
+            if (currentTime - invincibleTime >= 2000) // 2000 milliseconds = 2 giây
+            {
+                invincible = false; // Kết thúc trạng thái bất tử sau 2 giây
+            }
+        }
+        //xu li doi tuong enemies
         for(int j = 0;j < NUM_THREAT;j++)
         {
             Enemies* threat1 = (threats1 + j);
@@ -132,19 +149,46 @@ void Game::Run() {
                 {
                     Bullet* tBullet = tbullet_list.at(b);
 
+
+                    //Check collision threat bullet vs player
                     if(tBullet != NULL)
                     {
                         bool hit = CheckColli(tBullet->GetRect(),player1.GetRect());
-                        if(hit)
+
+
+
+                        if(hit&&!invincible)
                         {
+                            invincible = true;
+                            invincibleTime = SDL_GetTicks();
+
+                            Mix_PlayChannel( -1, g_sound_exp, 0 );
+                            //Load explosion animation
+                            for(int ex = 0;ex < 6;ex++)
+                            {
+                                int x_pos = (player1.GetRect().x + player1.GetRect().w/2) - EXP_W/2;
+                                int y_pos = (player1.GetRect().y + player1.GetRect().h/2) - EXP_H/2;
+
+                            p1Boom.set_frame(ex);
+                            p1Boom.SetRect(x_pos, y_pos);
+                            p1Boom.ShowEx(gScreen);
+                            SDL_Delay(50);
+
+                            SDL_RenderPresent(gScreen);
+
+                            }
+
+
                             player1.SetRect(SCREEN_WIDTH/2, SCREEN_HEIGHT - SCREEN_HEIGHT/6);
                         }
                     }
                 }
 
+                //check coll player vs threat
                 bool is_col = CheckColli(player1.GetRect(), threat1->GetRect());
                 if(is_col)
                 {
+                    Mix_PlayChannel( -1, g_sound_exp, 0 );
                     for(int ex = 0;ex < 6;ex++)
                     {
                         int x_pos = (player1.GetRect().x + player1.GetRect().w/2) - EXP_W/2;
@@ -177,6 +221,7 @@ void Game::Run() {
                         bool rc = CheckColli(pBullet->GetRect(),threat1->GetRect());
                        if(rc)
                        {
+                           Mix_PlayChannel( -1, g_sound_exp, 0 );
                            threat1->Reset(SCREEN_HEIGHT - j*500);
                            player1.RemoveBullet(b);
                        }
@@ -187,9 +232,6 @@ void Game::Run() {
 
         SDL_RenderPresent(gScreen);
 
-        // Uint32 endTime = SDL_GetTicks();
-        // Uint32 elapsedTime = endTime - startTime;
-        // if (elapsedTime < FRAME_DELAY)
         {
             SDL_Delay(10);
         }

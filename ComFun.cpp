@@ -1,10 +1,7 @@
 #include "ComFun.h"
 
 bool InitSDL() {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        return false;
-    }
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) return false;
     return true;
 }
 
@@ -30,7 +27,7 @@ SDL_Texture* LoadTexture(SDL_Renderer* renderer, std::string path) {
 
 bool CheckColli(const SDL_Rect& object1,const SDL_Rect& object2)
 {
-     int left_a = object1.x;
+  int left_a = object1.x;
   int right_a = object1.x + object1.w;
   int top_a = object1.y;
   int bottom_a = object1.y + object1.h;

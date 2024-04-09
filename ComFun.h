@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <SDL_mixer.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 
 const int FRAME_DELAY = 20;
 const int SCREEN_WIDTH = 840;
@@ -16,6 +17,9 @@ const int COLOR_KEY_B = 48;
 
 const int RENDER_DRAW_COLOR = 0Xff;
 
+static Mix_Chunk* g_sound_bullet;
+static Mix_Chunk* g_sound_exp;
+static Mix_Music* g_sound_music;
 
 bool InitSDL();
 void QuitSDL();

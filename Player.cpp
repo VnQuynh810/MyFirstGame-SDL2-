@@ -58,7 +58,7 @@ void Player::Show(SDL_Renderer* des) {
  SDL_RenderCopy (des,pObject,&frame_clip[i],&renderQuad);
 }
 
-void Player::HandleInput(SDL_Event event,SDL_Renderer* screen) {
+void Player::HandleInput(SDL_Event event,SDL_Renderer* screen, Mix_Chunk* shoot_sound) {
     if (event.type == SDL_KEYDOWN && event.key.repeat == 0) {
         switch (event.key.keysym.sym) {
             case SDLK_UP:{
@@ -108,13 +108,15 @@ void Player::HandleInput(SDL_Event event,SDL_Renderer* screen) {
             pBullet->LoadImg("pic//laser.png",screen);
             pBullet ->set_type(Bullet::LASER);
             pBullet->SetRect(this->_rect.x + 20 , this -> _rect.y - 20);
+            Mix_PlayChannel(-1,shoot_sound,0);
         }
         else if(event.button.button == SDL_BUTTON_RIGHT)
         {
             pBullet ->SetWidthHeight(WIDTH_SPHERE,HEIGHT_SPHERE);
             pBullet->LoadImg("pic//sphere.png",screen);
             pBullet ->set_type(Bullet::SPHERE);
-               pBullet->SetRect(this->_rect.x + 10 , this -> _rect.y - 20);
+            pBullet->SetRect(this->_rect.x + 10 , this -> _rect.y - 20);
+            Mix_PlayChannel(-1,shoot_sound,0);
         }
 
         pBullet ->set_is_move(true);
@@ -162,5 +164,6 @@ void Player::RemoveBullet(const int& idx)
     }
 
 }
+
 
 
