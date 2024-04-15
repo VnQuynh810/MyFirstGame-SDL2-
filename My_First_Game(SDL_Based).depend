@@ -599,7 +599,7 @@
 	<bits/stdc++.h>
 	"ComFun.h"
 
-1712675147 e:\hoc\code\advanced programing\game\boom\comfun.h
+1713191041 e:\hoc\code\advanced programing\game\boom\comfun.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<windows.h>
@@ -629,15 +629,16 @@
 	"ComFun.h"
 	"Bullet.h"
 
-1712679954 source:e:\hoc\code\advanced programing\game\boom\game.cpp
+1713192740 source:e:\hoc\code\advanced programing\game\boom\game.cpp
 	"Game.h"
 
-1712678916 e:\hoc\code\advanced programing\game\boom\game.h
+1713191550 e:\hoc\code\advanced programing\game\boom\game.h
 	"ComFun.h"
 	"BaseObj.h"
 	"PLayer.h"
 	"Enemies.h"
 	"Explosion.h"
+	"Text.h"
 
 1712678931 e:\hoc\code\advanced programing\game\boom\player.h
 	"BaseObj.h"
@@ -655,4 +656,10 @@
 
 1712590246 source:e:\hoc\code\advanced programing\game\boom\explosion.cpp
 	"Explosion.h"
+
+1713192107 e:\hoc\code\advanced programing\game\boom\text.h
+	"ComFun.h"
+	<iostream>
+	<SDL.h>
+	<SDL_ttf.h>
 

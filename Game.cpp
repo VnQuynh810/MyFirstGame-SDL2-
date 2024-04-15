@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : gWindow(NULL), gScreen(NULL),back_y(0) {}
+Game::Game() : gWindow(NULL),gScreen(NULL),back_y(0),score(0){}
 
 Game::~Game() {}
 
@@ -17,6 +17,12 @@ bool Game::Init() {
         std::cout <<"Renderer could not be created! SDL Error: " << SDL_GetError();
         return false;
     }
+    if (TTF_Init()) std::cerr << "iku";
+    font = TTF_OpenFont("Roboto-Bold.ttf",24); // Đường dẫn đến font
+        if (!font) {
+            std::cerr << "Failed to load font!\n";
+        }
+        textBox = TextBox(gScreen, font, 10, 10, {255, 255, 255});
     return true;
 }
 
@@ -30,9 +36,10 @@ bool Game::LoadResources() {
 
     //load audio
     if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT,2 , 4096) < 0 ) return false;
- //   g_sound_music = Mix_LoadMUSMusic("audio//music.ogg");
+    g_sound_music = Mix_LoadMUS("audio//music.wav");
     g_sound_bullet = Mix_LoadWAV("audio//playerShoot.wav");
     g_sound_exp = Mix_LoadWAV("audio//Boom.wav");
+    Mix_PlayMusic( g_sound_music, -1 );
 
     if (!r) return false;
     return true;
@@ -42,6 +49,8 @@ void Game::Close() {
     gBackground.Free();
     SDL_DestroyRenderer(gScreen);
     SDL_DestroyWindow(gWindow);
+    TTF_CloseFont(font);
+    TTF_Quit();
     QuitSDL();
 }
 
@@ -93,6 +102,8 @@ void Game::Run() {
         {
             back_y = 0;
         }
+        textBox.Render(score);
+
 
         player1.Show(gScreen);
         player1.Update();
@@ -127,9 +138,9 @@ void Game::Run() {
         if (invincible)
         {
             Uint32 currentTime = SDL_GetTicks();
-            if (currentTime - invincibleTime >= 2000) // 2000 milliseconds = 2 giây
+            if (currentTime - invincibleTime >= 3000)
             {
-                invincible = false; // Kết thúc trạng thái bất tử sau 2 giây
+                invincible = false; // Kết thúc trạng thái bất tử sau 3 giây
             }
         }
         //xu li doi tuong enemies
@@ -221,6 +232,7 @@ void Game::Run() {
                         bool rc = CheckColli(pBullet->GetRect(),threat1->GetRect());
                        if(rc)
                        {
+                           score++;
                            Mix_PlayChannel( -1, g_sound_exp, 0 );
                            threat1->Reset(SCREEN_HEIGHT - j*500);
                            player1.RemoveBullet(b);

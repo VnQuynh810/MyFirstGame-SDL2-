@@ -4,8 +4,9 @@
 #include"PLayer.h"
 #include "Enemies.h"
 #include "Explosion.h"
+#include "Text.h"
 
-#define NUM_THREAT 4
+#define NUM_THREAT 7
 
 class Game {
 public:
@@ -27,4 +28,8 @@ private:
     Explosion p1Boom;
     bool invincible = false;
     Uint32 invincibleTime;
+
+    int score;
+    TTF_Font* font;
+    TextBox textBox;
 };

@@ -64,6 +64,7 @@
 		<Unit filename="SDL2_image.dll" />
 		<Unit filename="SDL2_mixer.dll" />
 		<Unit filename="SDL2_ttf.dll" />
+		<Unit filename="Text.h" />
 		<Unit filename="helloworld.bmp" />
 		<Unit filename="main.cpp" />
 		<Extensions>

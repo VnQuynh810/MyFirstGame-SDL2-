@@ -15,6 +15,8 @@ const int COLOR_KEY_R = 1;
 const int COLOR_KEY_G = 18;
 const int COLOR_KEY_B = 48;
 
+
+
 const int RENDER_DRAW_COLOR = 0Xff;
 
 static Mix_Chunk* g_sound_bullet;
