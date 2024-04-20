@@ -38,7 +38,7 @@ bool Game::LoadResources() {
     if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT,2 , 4096) < 0 ) return false;
     g_sound_music = Mix_LoadMUS("audio//music.wav");
     g_sound_bullet = Mix_LoadWAV("audio//playerShoot.wav");
-    g_sound_exp = Mix_LoadWAV("audio//Boom.wav");
+    g_sound_exp = Mix_LoadWAV("audio//8bitexp.wav");
     g_sound_niceMusic = Mix_LoadMUS("audio//nice-music.wav");
 
     if (!r) return false;
