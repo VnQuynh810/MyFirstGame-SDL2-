@@ -28,6 +28,7 @@ bool Game::Init() {
 
 bool Game::LoadResources() {
     bool r = gBackground.LoadImg("pic//background.png", gScreen);
+    menu.LoadImg("pic//menu.png",gScreen);
 
     r = player1.LoadImg("pic//player.png",gScreen);
 
@@ -72,7 +73,6 @@ void Game::Menu()
                 menu.Free();
             }
 
-        menu.LoadImg("pic//menu.png",gScreen);
         menu.Render(gScreen,NULL);
         SDL_RenderPresent(gScreen);
 
