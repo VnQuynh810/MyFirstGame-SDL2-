@@ -9,15 +9,15 @@ bool Game::Init() {
 
     gWindow = SDL_CreateWindow("Space Invader", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (gWindow == NULL) {
-        std::cout << "Window could not be created! SDL_Error: "<< SDL_GetError();
+        std::cerr << "Window could not be created! SDL_Error: "<< SDL_GetError();
         return false;
     }
     gScreen = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
     if (gScreen == NULL) {
-        std::cout <<"Renderer could not be created! SDL Error: " << SDL_GetError();
+        std::cerr <<"Renderer could not be created! SDL Error: " << SDL_GetError();
         return false;
     }
-    if (TTF_Init()) std::cerr << "iku";
+    TTF_Init();
     font = TTF_OpenFont("RobotoMono[wght].ttf",24); // Đường dẫn đến font
         if (!font) {
             std::cerr << "Failed to load font!\n";
@@ -59,7 +59,7 @@ void Game::Menu()
     if (!Init()) return;
     if (!LoadResources()) return;
     Mix_PlayMusic( g_sound_niceMusic, -1 );
-    Mix_VolumeMusic(20);
+    Mix_VolumeMusic(25);
     SDL_Event e;
 
     bool isQ = false;
@@ -217,9 +217,9 @@ void Game::Run() {
                         bool hit = CheckColli(tBullet->GetRect(),player1.GetRect());
 
 
-
                         if(hit&&!invincible)
                         {
+                            livesCount--;
                             invincible = true;
                             invincibleTime = SDL_GetTicks();
 
@@ -247,9 +247,13 @@ void Game::Run() {
 
                 //check coll player vs threat
                 bool is_col = CheckColli(player1.GetRect(), threat1->GetRect());
-                if(is_col)
+               if(is_col&&!invincible)
                 {
+                    livesCount--;
+                    invincible = true;
+                    invincibleTime = SDL_GetTicks();
                     Mix_PlayChannel( -1, g_sound_exp, 0 );
+
                     for(int ex = 0;ex < 6;ex++)
                     {
                         int x_pos = (player1.GetRect().x + player1.GetRect().w/2) - EXP_W/2;
@@ -264,7 +268,10 @@ void Game::Run() {
 
                     }
 
-                    if( MessageBoxW(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+                }
+                if (livesCount == 0)
+                {
+                     if( MessageBoxW(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
                     {
                         delete[] threats1;
                         Close();
