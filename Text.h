@@ -13,13 +13,13 @@ public:
     // Hàm constructor mặc định
     TextBox() : renderer(nullptr), font(nullptr), x(0), y(0), color({0, 0, 0}) {}
 
-    void Render(int score) {
-        SDL_Surface* surface = TTF_RenderText_Solid(font, ("Score: " + std::to_string(score)).c_str(), color);
+    void Render(int score, std::string path, int xP, int yP) {
+        SDL_Surface* surface = TTF_RenderText_Solid(font, (path + std::to_string(score)).c_str(), color);
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
         int text_width = surface->w;
         int text_height = surface->h;
 
-        SDL_Rect dstRect = {x, y, text_width, text_height};
+        SDL_Rect dstRect = {xP, yP, text_width, text_height};
         SDL_RenderCopy(renderer, texture, NULL, &dstRect);
 
         SDL_FreeSurface(surface);

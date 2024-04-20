@@ -5,6 +5,7 @@
 #include "Enemies.h"
 #include "Explosion.h"
 #include "Text.h"
+#include "loot.h"
 
 #define NUM_THREAT 7
 
@@ -33,7 +34,15 @@ private:
     Uint32 invincibleTime;
 
     int score;
-    int livesCount;
     TTF_Font* font;
     TextBox textBox;
+    TextBox liveText;
+
+    Loot UFO;
+    bool UFOShown = true;
+    Uint32 LootShownTime;
+
+    bool isPowerUpActive;
+    PowerUp currentPowerUp;
+
 };

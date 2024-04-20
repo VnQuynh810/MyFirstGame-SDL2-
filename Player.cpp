@@ -3,7 +3,7 @@
 
 Player::Player()
 {
-    frame = 0;x_val = 0; y_val = 0; width = 0; height = 0; status = -1; _rect.x = SCREEN_WIDTH/2; _rect.y = SCREEN_HEIGHT - SCREEN_HEIGHT/6 ;
+    frame = 0;x_val = 0; y_val = 0; width = 0; height = 0; status = -1; _rect.x = SCREEN_WIDTH/2; _rect.y = SCREEN_HEIGHT - SCREEN_HEIGHT/6, lives = 5, shieldActive = false; ;
 }
 
 Player::~Player() {}
@@ -62,13 +62,10 @@ void Player::HandleInput(SDL_Event event,SDL_Renderer* screen, Mix_Chunk* shoot_
     if (event.type == SDL_KEYDOWN && event.key.repeat == 0) {
         switch (event.key.keysym.sym) {
             case SDLK_UP:{
-
-               input_type.up = 1;
                y_val -= PLAYER_SPEED;
                 break;
                 }
             case SDLK_DOWN:{
-                input_type.down = 1;
                y_val += PLAYER_SPEED;
                 break;
                 }
@@ -78,23 +75,46 @@ void Player::HandleInput(SDL_Event event,SDL_Renderer* screen, Mix_Chunk* shoot_
             case SDLK_RIGHT:
              x_val += PLAYER_SPEED;
                 break;
+            case SDLK_w:{
+               y_val -= PLAYER_SPEED;
+                break;
+                }
+            case SDLK_s:{
+               y_val += PLAYER_SPEED;
+                break;
+                }
+            case SDLK_a:
+                x_val -= PLAYER_SPEED;
+                break;
+            case SDLK_d:
+             x_val += PLAYER_SPEED;
+                break;
         }
     }
     else if (event.type == SDL_KEYUP && event.key.repeat == 0) {
         switch (event.key.keysym.sym) {
             case SDLK_UP:
                 y_val += PLAYER_SPEED;
-            //    input_type.up = 0;
-
                 break;
             case SDLK_DOWN:
            y_val -= PLAYER_SPEED;
-      //     input_type.down = 0;
                 break;
             case SDLK_LEFT:
            x_val += PLAYER_SPEED;
                 break;
           case SDLK_RIGHT:
+            x_val -= PLAYER_SPEED;
+                break;
+            case SDLK_w:
+                y_val += PLAYER_SPEED;
+                break;
+            case SDLK_s:
+           y_val -= PLAYER_SPEED;
+                break;
+            case SDLK_a:
+           x_val += PLAYER_SPEED;
+                break;
+            case SDLK_d:
             x_val -= PLAYER_SPEED;
                 break;
         }
@@ -163,6 +183,10 @@ void Player::RemoveBullet(const int& idx)
         }
     }
 
+}
+
+void Player::IncreaseLives(int amount) {
+    lives += amount;
 }
 
 

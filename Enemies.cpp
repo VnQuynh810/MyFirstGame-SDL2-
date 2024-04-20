@@ -31,14 +31,14 @@ void Enemies::InitBullet(Bullet* tBullet,SDL_Renderer* screen)
     if (tBullet)
     {
 
-        bool c = tBullet->LoadImg("pic//sphere.png",screen);
+        bool c = tBullet->LoadImg("pic//GreenBullets.png",screen);
         if(c)
         {
             tBullet->set_is_move(true);
-            tBullet->SetRect(WIDTH_SPHERE,HEIGHT_SPHERE);
-            tBullet->SetWidthHeight(WIDTH_SPHERE,HEIGHT_SPHERE);
-            tBullet->set_type(Bullet::SPHERE);
-            tBullet->SetRect(_rect.x + _rect.w/2,_rect.y);
+            tBullet->SetRect(GREEN_H,GREEN_W);
+            tBullet->SetWidthHeight(GREEN_H,GREEN_W);
+            tBullet->set_type(Bullet::GREEN);
+            tBullet->SetRect(_rect.x + ENEMIES_W/2,_rect.y);
             tBullet_list.push_back(tBullet);
         }
     }
@@ -59,7 +59,7 @@ void Enemies::MakeBullet(SDL_Renderer* des, const int& x_limit, const int& y_lim
             else
             {
                 tBullet->set_is_move(true);
-                tBullet->SetRect(_rect.x + 5,_rect.y + _rect.h/2);
+                tBullet->SetRect(_rect.x + 10,_rect.y + _rect.h/2);
             }
         }
     }

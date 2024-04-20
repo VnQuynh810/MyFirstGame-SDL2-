@@ -60,12 +60,16 @@
 		<Unit filename="My_First_Game(SDL_Based).layout" />
 		<Unit filename="PLayer.h" />
 		<Unit filename="Player.cpp" />
+		<Unit filename="PowerUps.cpp" />
+		<Unit filename="PowerUps.h" />
 		<Unit filename="SDL2.dll" />
 		<Unit filename="SDL2_image.dll" />
 		<Unit filename="SDL2_mixer.dll" />
 		<Unit filename="SDL2_ttf.dll" />
 		<Unit filename="Text.h" />
 		<Unit filename="helloworld.bmp" />
+		<Unit filename="loot.cpp" />
+		<Unit filename="loot.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

@@ -1,11 +1,14 @@
 #pragma once
 #include "BaseObj.h"
 
-#define WIDTH_LASER 11
-#define HEIGHT_LASER 41
+#define WIDTH_LASER 5
+#define HEIGHT_LASER 27
 
 #define WIDTH_SPHERE 18
 #define HEIGHT_SPHERE 21
+
+#define GREEN_H 8
+#define GREEN_W 16
 
 class Bullet : public BaseObject
 {
@@ -14,7 +17,8 @@ public:
   {
     NONE = 0,
     LASER = 1,
-    SPHERE = 2
+    SPHERE = 2,
+    GREEN = 3,
   };
 
     Bullet();
@@ -22,7 +26,6 @@ public:
 
     void HandleInput(SDL_Event events );
     void Update(const int& x_border, const int& y_border);
-    void sinUpdate(const int& x_border, const int& y_border);
     void UpdateUpDown();
     int get_type() const {return amo_type;};
     void set_type(const int& type) {amo_type = type;};

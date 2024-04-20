@@ -3,8 +3,8 @@
 #include "BaseObj.h"
 #include "ComFun.h"
 
-const int EXP_W = 89;
-const int EXP_H = 90;
+const int EXP_W = 118;
+const int EXP_H = 120;
 class Explosion : public BaseObject
 {
 public:

@@ -2,8 +2,9 @@
 #include "BaseObj.h"
 #include "ComFun.h"
 #include "Bullet.h"
-#define ENEMIES_H 36;
-#define ENEMIES_W 30;
+#define ENEMIES_H 36
+#define ENEMIES_W 30
+
 
 
 class Enemies : public BaseObject

@@ -663,3 +663,90 @@
 	<SDL.h>
 	<SDL_ttf.h>
 
+1711192200 source:e:\hoc\code\advanced programing\game\add wasd control option - copy\baseobj.cpp
+	<bits/stdc++.h>
+	"BaseObj.h"
+
+1711192200 e:\hoc\code\advanced programing\game\add wasd control option - copy\baseobj.h
+	<bits/stdc++.h>
+	"ComFun.h"
+
+1713596031 e:\hoc\code\advanced programing\game\add wasd control option - copy\comfun.h
+	<bits/stdc++.h>
+	<SDL.h>
+	<windows.h>
+	<SDL_mixer.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+
+1713609436 source:e:\hoc\code\advanced programing\game\add wasd control option - copy\bullet.cpp
+	"Bullet.h"
+
+1713603748 e:\hoc\code\advanced programing\game\add wasd control option - copy\bullet.h
+	"BaseObj.h"
+
+1712674475 source:e:\hoc\code\advanced programing\game\add wasd control option - copy\comfun.cpp
+	"ComFun.h"
+
+1710658668 source:e:\hoc\code\advanced programing\game\add wasd control option - copy\display.cpp
+	"Display.h"
+
+1710658668 e:\hoc\code\advanced programing\game\add wasd control option - copy\display.h
+
+1713601024 source:e:\hoc\code\advanced programing\game\add wasd control option - copy\enemies.cpp
+	"Enemies.h"
+
+1713600978 e:\hoc\code\advanced programing\game\add wasd control option - copy\enemies.h
+	"BaseObj.h"
+	"ComFun.h"
+	"Bullet.h"
+
+1712590246 source:e:\hoc\code\advanced programing\game\add wasd control option - copy\explosion.cpp
+	"Explosion.h"
+
+1713635486 e:\hoc\code\advanced programing\game\add wasd control option - copy\explosion.h
+	"BaseObj.h"
+	"ComFun.h"
+
+1713591477 source:e:\hoc\code\advanced programing\game\add wasd control option - copy\main.cpp
+	"Game.h"
+
+1713629495 e:\hoc\code\advanced programing\game\add wasd control option - copy\game.h
+	"ComFun.h"
+	"BaseObj.h"
+	"PLayer.h"
+	"Enemies.h"
+	"Explosion.h"
+	"Text.h"
+	"loot.h"
+
+1713634383 e:\hoc\code\advanced programing\game\add wasd control option - copy\player.h
+	"BaseObj.h"
+	"Bullet.h"
+
+1713599339 e:\hoc\code\advanced programing\game\add wasd control option - copy\text.h
+	"ComFun.h"
+	<iostream>
+	<SDL.h>
+	<SDL_ttf.h>
+
+1713634383 source:e:\hoc\code\advanced programing\game\add wasd control option - copy\player.cpp
+	"PLayer.h"
+
+1713635173 source:e:\hoc\code\advanced programing\game\add wasd control option - copy\game.cpp
+	"Game.h"
+
+1713633444 source:e:\hoc\code\advanced programing\game\add wasd control option - copy\loot.cpp
+	"loot.h"
+
+1713630727 e:\hoc\code\advanced programing\game\add wasd control option - copy\loot.h
+	"BaseObj.h"
+	"PowerUps.h"
+
+1713633069 e:\hoc\code\advanced programing\game\add wasd control option - copy\powerups.h
+	"BaseObj.h"
+	"PLayer.h"
+
+1713634384 source:e:\hoc\code\advanced programing\game\add wasd control option - copy\powerups.cpp
+	"PowerUps.h"
+

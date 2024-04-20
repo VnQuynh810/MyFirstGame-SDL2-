@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : gWindow(NULL),gScreen(NULL),back_y(0),score(0),livesCount(5){}
+Game::Game() : gWindow(NULL),gScreen(NULL),back_y(0),score(0),isPowerUpActive(false) {}
 
 Game::~Game() {}
 
@@ -23,6 +23,7 @@ bool Game::Init() {
             std::cerr << "Failed to load font!\n";
         }
         textBox = TextBox(gScreen, font, 10, 10, {255, 255, 255});
+        liveText = TextBox(gScreen, font, 10, 10, {255, 255, 255});
     return true;
 }
 
@@ -31,6 +32,8 @@ bool Game::LoadResources() {
     menu.LoadImg("pic//menu.png",gScreen);
 
     r = player1.LoadImg("pic//player.png",gScreen);
+
+    UFO.LoadImg("pic//Loot.png",gScreen);
 
     p1Boom.LoadImg("pic//Explosion.png",gScreen);
     p1Boom.set_clip();
@@ -105,11 +108,14 @@ void Game::Menu()
 
 void Game::Run() {
 
+    srand(time(NULL));
+
     Mix_PlayMusic( g_sound_music, -1 );
     Mix_VolumeMusic(50);
 
     player1.Update();
 
+    //Generate threats
     for(int i = 0; i < NUM_THREAT;i++)
     {
         Enemies* threat1 = (threats1 + i);
@@ -130,8 +136,8 @@ void Game::Run() {
     }
 
     bool isQuit = false;
+    bool rl = false;
     while (!isQuit) {
-
         while (SDL_PollEvent(&gEvent) != 0) {
             if (gEvent.type == SDL_QUIT) {
                 isQuit = true;
@@ -142,7 +148,9 @@ void Game::Run() {
         SDL_SetRenderDrawColor(gScreen, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR);//Make background of the image transparent
         SDL_RenderClear(gScreen);
 
-        back_y += 1;
+        //Scroll background
+
+        back_y += 1; //Background Coordinates increase by time
         gBackground.SetRect(NULL,back_y);
         gBackground.Render(gScreen, NULL);
         gBackground.SetRect(NULL,back_y - SCREEN_HEIGHT);
@@ -152,11 +160,55 @@ void Game::Run() {
         {
             back_y = 0;
         }
-        textBox.Render(score);
+
+        textBox.Render(score,"Score: ",0,0);
+        liveText.Render(player1.get_live(),"Lifes: ",SCREEN_WIDTH/6,0);
+
+        if (UFOShown){
+            UFO.Render(gScreen);
+            UFO.x_val = 2;
+            UFO.Update();
+        }
 
 
-        player1.Show(gScreen);
+
+
+
+        //UFO Appearence countdown
+        if (!UFOShown)
+        {
+            Uint32 LootTime = SDL_GetTicks();
+            if (LootTime - LootShownTime >= 20000)
+            {
+                UFO.SetRect(0,80);
+                UFO.LoadImg("pic//Loot.png",gScreen);
+                rl = false;
+                UFOShown = true; // UFO appear after 20 seconds
+            }
+        }
+
+
+        player1.Render(gScreen);
         player1.Update();
+
+        if (rl) {
+            // Tạo một PowerUp mới tại vị trí của UFO với loại ngẫu nhiên
+            PowerUpType randomType = static_cast<PowerUpType>(rand() % 3);
+            currentPowerUp.Init(randomType, gScreen);
+            currentPowerUp.SetRect(UFO.y_val, UFO.GetRect().y);
+
+            isPowerUpActive = true;
+        }
+        if (isPowerUpActive) {
+        currentPowerUp.Render(gScreen);
+        currentPowerUp.Update();
+        if (CheckColli(player1.GetRect(), currentPowerUp.GetRect())) {
+            currentPowerUp.ApplyEffect(player1);
+            isPowerUpActive = false; // Loại bỏ PowerUp sau khi sử dụng
+        } else if (!currentPowerUp.IsActive()) {
+            isPowerUpActive = false; // Loại bỏ PowerUp nếu ra khỏi màn hình
+        }
+    }
 
         for(int i = 0;i < player1.GetBulletList().size();i++)
         {
@@ -183,16 +235,63 @@ void Game::Run() {
                 }
             }
         }
+        std::vector<Bullet*> bullet_list = player1.GetBulletList();
+                for (int b = 0; b < bullet_list.size(); b++)
+                {
+                    Bullet* pBullet = bullet_list.at(b);
+
+                    if(pBullet != NULL)
+                    {
+                        rl = CheckColli(pBullet->GetRect(),UFO.GetRect());
+                        if(rl)
+                        {
+                            UFO.y_val = UFO.GetRect().x;
+                            UFO.SetRect(-100,-100);
+                            LootShownTime = SDL_GetTicks();
+                            score++;
+                            Mix_PlayChannel( -1, g_sound_exp, 0 );
+                            UFOShown = false;
+                            bullet_list.erase(bullet_list.begin() + b);
+                            player1.setBulletList(bullet_list);
+                            delete pBullet;
+                            pBullet = NULL;
+
+                            // Thoát khỏi vòng lặp for vì chúng ta đã xử lý viên đạn đã bắn trúng UFO
+                            break;
+                        }
+                    }
+                }
+
+
 
         //xu li trang thai bat tu cua player
+
+        if(player1.shieldActive)
+        {
+            player1.LoadImg("pic//player-shielded.png",gScreen);
+            Uint32 currentTime = SDL_GetTicks();
+            if (currentTime - invincibleTime >= 10000)
+            {
+                player1.LoadImg("pic//player.png",gScreen);
+                player1.shieldActive = false; // Kết thúc trạng thái bất tử sau 3 giây
+            }
+        }
+
         if (invincible)
         {
+            player1.LoadImg("pic//player-protected.png",gScreen);
             Uint32 currentTime = SDL_GetTicks();
             if (currentTime - invincibleTime >= 3000)
             {
+                player1.LoadImg("pic//player.png",gScreen);
                 invincible = false; // Kết thúc trạng thái bất tử sau 3 giây
             }
         }
+
+
+
+
+
         //xu li doi tuong enemies
         for(int j = 0;j < NUM_THREAT;j++)
         {
@@ -217,9 +316,9 @@ void Game::Run() {
                         bool hit = CheckColli(tBullet->GetRect(),player1.GetRect());
 
 
-                        if(hit&&!invincible)
+                        if(hit&&!invincible&&!player1.shieldActive)
                         {
-                            livesCount--;
+                            player1.IncreaseLives(-1);
                             invincible = true;
                             invincibleTime = SDL_GetTicks();
 
@@ -242,17 +341,19 @@ void Game::Run() {
 
                             player1.SetRect(SCREEN_WIDTH/2, SCREEN_HEIGHT - SCREEN_HEIGHT/6);
                         }
+
                     }
                 }
 
                 //check coll player vs threat
                 bool is_col = CheckColli(player1.GetRect(), threat1->GetRect());
-               if(is_col&&!invincible)
+               if(is_col&&!invincible&&!player1.shieldActive)
                 {
-                    livesCount--;
+                    player1.IncreaseLives(-1);
                     invincible = true;
                     invincibleTime = SDL_GetTicks();
                     Mix_PlayChannel( -1, g_sound_exp, 0 );
+                    threat1->Reset(SCREEN_HEIGHT - j*500);
 
                     for(int ex = 0;ex < 6;ex++)
                     {
@@ -269,8 +370,15 @@ void Game::Run() {
                     }
 
                 }
-                if (livesCount == 0)
+                else if ((is_col&&invincible)||(is_col&&player1.shieldActive))
                 {
+                    Mix_PlayChannel( -1, g_sound_exp, 0 );
+                    threat1->Reset(SCREEN_HEIGHT - j*500);
+                }
+                if (player1.get_live() == 0)
+                {
+                    Mix_Chunk* g_sound_over = Mix_LoadWAV("audio//gameOver.wav");
+                    Mix_PlayChannel( -1, g_sound_over, 0 );
                      if( MessageBoxW(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
                     {
                         delete[] threats1;
@@ -279,6 +387,9 @@ void Game::Run() {
                     }
                 }
 
+
+
+
                 std::vector<Bullet*> bullet_list = player1.GetBulletList();
                 for (int b = 0; b < bullet_list.size(); b++)
                 {
@@ -286,6 +397,8 @@ void Game::Run() {
 
                     if(pBullet != NULL)
                     {
+
+
                         bool rc = CheckColli(pBullet->GetRect(),threat1->GetRect());
                        if(rc)
                        {
