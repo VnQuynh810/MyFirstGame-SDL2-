@@ -7,8 +7,8 @@
 #include <SDL_ttf.h>
 
 const int FRAME_DELAY = 20;
-const int SCREEN_WIDTH = 840;
-const int SCREEN_HEIGHT = 1016;
+const int SCREEN_WIDTH = 1200;
+const int SCREEN_HEIGHT = 900;
 const int SCREEN_BPP = 32;
 
 const int COLOR_KEY_R = 1;

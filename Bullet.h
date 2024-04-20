@@ -22,6 +22,7 @@ public:
 
     void HandleInput(SDL_Event events );
     void Update(const int& x_border, const int& y_border);
+    void sinUpdate(const int& x_border, const int& y_border);
     void UpdateUpDown();
     int get_type() const {return amo_type;};
     void set_type(const int& type) {amo_type = type;};
@@ -35,7 +36,7 @@ private:
     int y_val;
     bool is_move;
     int amo_type;
-
+    float angle;
 };
 
 

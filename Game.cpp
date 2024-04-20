@@ -54,8 +54,49 @@ void Game::Close() {
     QuitSDL();
 }
 
-void Game::Run() {
+void Game::Menu()
+{
     if (!Init()) return;
+
+    SDL_Event e;
+
+    bool isQ = false;
+    while(!isQ)
+    {
+        while (SDL_PollEvent(&e) != 0) {
+            if (e.type == SDL_QUIT) {
+                isQ = true;
+                menu.Free();
+            }
+
+        menu.LoadImg("pic//menu.png",gScreen);
+        menu.Render(gScreen,NULL);
+        SDL_RenderPresent(gScreen);
+
+
+        if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
+            {
+                switch (e.key.keysym.sym)
+                {
+                case SDLK_x:
+                    {
+                        isQ = true; menu.Free();
+                        break;
+                    }
+                case SDLK_ESCAPE:
+                    {
+                        Close(); break;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+
+void Game::Run() {
+
     if (!LoadResources()) return;
 
     player1.Update();
@@ -117,7 +158,7 @@ void Game::Run() {
             {
                 if (pBullet -> get_is_move())
                 {
-                    pBullet ->Render(gScreen, NULL);
+                    pBullet->Render(gScreen, NULL);
                     pBullet->Update(SCREEN_WIDTH, SCREEN_HEIGHT);
                 }
                 else

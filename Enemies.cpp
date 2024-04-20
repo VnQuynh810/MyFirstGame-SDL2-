@@ -59,7 +59,7 @@ void Enemies::MakeBullet(SDL_Renderer* des, const int& x_limit, const int& y_lim
             else
             {
                 tBullet->set_is_move(true);
-                tBullet->SetRect(_rect.x,_rect.y + _rect.h/2);
+                tBullet->SetRect(_rect.x + 5,_rect.y + _rect.h/2);
             }
         }
     }
@@ -71,7 +71,7 @@ void Enemies::Update(const int& x_bor, const int &y_bor)
     if(_rect.y > SCREEN_HEIGHT )
     {
         _rect.y = 0;
-        int rand_x = rand()%400;
+        int rand_x = rand()%1000;
         if(rand_x > SCREEN_WIDTH)
         {
             rand_x = SCREEN_WIDTH*0.2;

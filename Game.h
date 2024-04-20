@@ -15,6 +15,7 @@ public:
     bool Init();
     bool LoadResources();
     void Close();
+    void Menu();
     void Run();
 
 private:
@@ -22,6 +23,8 @@ private:
     SDL_Renderer* gScreen;
     SDL_Event gEvent;
     BaseObject gBackground;
+    BaseObject menu;
+
     Player player1;
     Enemies* threats1 = new Enemies[NUM_THREAT];
     int back_y;
