@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : gWindow(NULL),gScreen(NULL),back_y(0),score(0),livesCount(0){}
+Game::Game() : gWindow(NULL),gScreen(NULL),back_y(0),score(0),livesCount(5){}
 
 Game::~Game() {}
 
@@ -39,7 +39,7 @@ bool Game::LoadResources() {
     g_sound_music = Mix_LoadMUS("audio//music.wav");
     g_sound_bullet = Mix_LoadWAV("audio//playerShoot.wav");
     g_sound_exp = Mix_LoadWAV("audio//Boom.wav");
-    Mix_PlayMusic( g_sound_music, -1 );
+    g_sound_niceMusic = Mix_LoadMUS("audio//nice-music.wav");
 
     if (!r) return false;
     return true;
@@ -57,12 +57,15 @@ void Game::Close() {
 void Game::Menu()
 {
     if (!Init()) return;
-
+    if (!LoadResources()) return;
+    Mix_PlayMusic( g_sound_niceMusic, -1 );
+    Mix_VolumeMusic(20);
     SDL_Event e;
 
     bool isQ = false;
     while(!isQ)
     {
+
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) {
                 isQ = true;
@@ -102,7 +105,8 @@ void Game::Menu()
 
 void Game::Run() {
 
-    if (!LoadResources()) return;
+    Mix_PlayMusic( g_sound_music, -1 );
+    Mix_VolumeMusic(50);
 
     player1.Update();
 

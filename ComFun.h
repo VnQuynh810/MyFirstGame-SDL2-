@@ -22,6 +22,7 @@ const int RENDER_DRAW_COLOR = 0Xff;
 static Mix_Chunk* g_sound_bullet;
 static Mix_Chunk* g_sound_exp;
 static Mix_Music* g_sound_music;
+static Mix_Music* g_sound_niceMusic;
 
 bool InitSDL();
 void QuitSDL();
