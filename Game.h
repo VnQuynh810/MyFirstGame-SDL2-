@@ -33,6 +33,7 @@ private:
     Uint32 invincibleTime;
 
     int score;
+    int livesCount;
     TTF_Font* font;
     TextBox textBox;
 };

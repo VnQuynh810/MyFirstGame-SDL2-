@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : gWindow(NULL),gScreen(NULL),back_y(0),score(0){}
+Game::Game() : gWindow(NULL),gScreen(NULL),back_y(0),score(0),livesCount(0){}
 
 Game::~Game() {}
 
@@ -18,7 +18,7 @@ bool Game::Init() {
         return false;
     }
     if (TTF_Init()) std::cerr << "iku";
-    font = TTF_OpenFont("Roboto-Bold.ttf",24); // Đường dẫn đến font
+    font = TTF_OpenFont("RobotoMono[wght].ttf",24); // Đường dẫn đến font
         if (!font) {
             std::cerr << "Failed to load font!\n";
         }
@@ -82,6 +82,11 @@ void Game::Menu()
                     {
                         isQ = true; menu.Free();
                         break;
+                    }
+
+                case SDLK_e:
+                    {
+
                     }
                 case SDLK_ESCAPE:
                     {
