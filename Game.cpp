@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : gWindow(NULL),gScreen(NULL),back_y(0),score(0),isPowerUpActive(false) {}
+Game::Game() : gWindow(NULL),gScreen(NULL),back_y(0),score(0),isPowerUpActive(false){}
 
 Game::~Game() {}
 
@@ -35,6 +35,7 @@ bool Game::LoadResources() {
 
     UFO.LoadImg("pic//Loot.png",gScreen);
 
+
     p1Boom.LoadImg("pic//Explosion.png",gScreen);
     p1Boom.set_clip();
 
@@ -43,7 +44,8 @@ bool Game::LoadResources() {
     g_sound_music = Mix_LoadMUS("audio//music.wav");
     g_sound_bullet = Mix_LoadWAV("audio//playerShoot.wav");
     g_sound_exp = Mix_LoadWAV("audio//8bitexp.wav");
-    g_sound_niceMusic = Mix_LoadMUS("audio//nice-music.wav");
+    g_sound_niceMusic = Mix_LoadMUS("audio//Star Wars Intro HD 1080p.wav");
+    g_sound_powerUp = Mix_LoadWAV("audio//PU.wav");
 
     if (!r) return false;
     return true;
@@ -108,7 +110,6 @@ void Game::Menu()
 
 void Game::Run() {
 
-    srand(time(NULL));
 
     Mix_PlayMusic( g_sound_music, -1 );
     Mix_VolumeMusic(50);
@@ -137,6 +138,7 @@ void Game::Run() {
 
     bool isQuit = false;
     bool rl = false;
+    bool rl2 = false;
     while (!isQuit) {
         while (SDL_PollEvent(&gEvent) != 0) {
             if (gEvent.type == SDL_QUIT) {
@@ -171,9 +173,6 @@ void Game::Run() {
         }
 
 
-
-
-
         //UFO Appearence countdown
         if (!UFOShown)
         {
@@ -203,6 +202,7 @@ void Game::Run() {
         currentPowerUp.Render(gScreen);
         currentPowerUp.Update();
         if (CheckColli(player1.GetRect(), currentPowerUp.GetRect())) {
+            Mix_PlayChannel( -1, g_sound_powerUp, 0 );
             currentPowerUp.ApplyEffect(player1);
             isPowerUpActive = false; // Loại bỏ PowerUp sau khi sử dụng
         } else if (!currentPowerUp.IsActive()) {
@@ -262,8 +262,6 @@ void Game::Run() {
                     }
                 }
 
-
-
         //xu li trang thai bat tu cua player
 
         if(player1.shieldActive)
@@ -276,6 +274,7 @@ void Game::Run() {
                 player1.shieldActive = false; // Kết thúc trạng thái bất tử sau 3 giây
             }
         }
+
 
         if (invincible)
         {
