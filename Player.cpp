@@ -3,7 +3,7 @@
 
 Player::Player()
 {
-    frame = 0;x_val = 0; y_val = 0; width = 0; height = 0; status = -1; _rect.x = SCREEN_WIDTH/2; _rect.y = SCREEN_HEIGHT - SCREEN_HEIGHT/6, lives = 5, shieldActive = false; ;
+    frame = 0;x_val = 0; y_val = 0; width = 0; height = 0; status = -1; _rect.x = SCREEN_WIDTH/2; _rect.y = SCREEN_HEIGHT - SCREEN_HEIGHT/6, lives = 5, shieldActive = false ;
 }
 
 Player::~Player() {}

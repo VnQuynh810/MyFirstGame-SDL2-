@@ -13,7 +13,7 @@ void PowerUp::Init(PowerUpType type, SDL_Renderer* screen) {
             path = "pic//Apple.png";
             break;
         case POWER_BOOST:
-            path = "pic//Apple.png";
+            path = "pic//appshield.png";
             break;
         case SHIELD:
             path = "pic//shield.png";
@@ -30,10 +30,11 @@ void PowerUp::ApplyEffect(Player& player) {
     if (active) {
         switch (type) {
             case HEALTH_BOOST:
-                player.IncreaseLives(5); // Tăng 5 mạng cho Player
+                player.IncreaseLives(5);// Tăng 5 mạng cho Player
                 break;
             case POWER_BOOST:
-                player.IncreaseLives(5); // Tăng sức mạnh cho Player
+                player.IncreaseLives(5);
+                player.shieldActive = true; // Tăng sức mạnh cho Player
                 break;
             case SHIELD:
                 player.shieldActive = true; // Kích hoạt bảo vệ cho Player

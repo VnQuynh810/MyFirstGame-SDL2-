@@ -24,6 +24,7 @@ bool Game::Init() {
         }
         textBox = TextBox(gScreen, font, 10, 10, {255, 255, 255});
         liveText = TextBox(gScreen, font, 10, 10, {255, 255, 255});
+        timeText = TextBox(gScreen, font, 10, 10, {255, 255, 255});
     return true;
 }
 
@@ -109,12 +110,11 @@ void Game::Menu()
 
 
 void Game::Run() {
-
+    startTime = SDL_GetTicks();
 
     Mix_PlayMusic( g_sound_music, -1 );
-    Mix_VolumeMusic(50);
+    Mix_VolumeMusic(40);
 
-    player1.Update();
 
     //Generate threats
     for(int i = 0; i < NUM_THREAT;i++)
@@ -166,12 +166,17 @@ void Game::Run() {
         textBox.Render(score,"Score: ",0,0);
         liveText.Render(player1.get_live(),"Lifes: ",SCREEN_WIDTH/6,0);
 
+
         if (UFOShown){
             UFO.Render(gScreen);
             UFO.x_val = 2;
             UFO.Update();
         }
 
+        Uint32 currentTime = SDL_GetTicks();
+        Uint32 elapsedTime = currentTime - startTime;
+        elapsedTimeSeconds = elapsedTime / 1000;
+        timeText.Render(elapsedTimeSeconds,"Time: ",SCREEN_WIDTH/3,0);
 
         //UFO Appearence countdown
         if (!UFOShown)
@@ -373,6 +378,7 @@ void Game::Run() {
                 {
                     Mix_PlayChannel( -1, g_sound_exp, 0 );
                     threat1->Reset(SCREEN_HEIGHT - j*500);
+                    score++;
                 }
                 if (player1.get_live() == 0)
                 {

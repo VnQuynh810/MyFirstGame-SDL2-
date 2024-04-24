@@ -37,6 +37,7 @@ private:
     TTF_Font* font;
     TextBox textBox;
     TextBox liveText;
+    TextBox timeText;
 
     Loot UFO;
     bool UFOShown = true;
@@ -44,5 +45,8 @@ private:
 
     bool isPowerUpActive;
     PowerUp currentPowerUp;
+
+    Uint32 startTime;
+    int elapsedTimeSeconds;
 
 };

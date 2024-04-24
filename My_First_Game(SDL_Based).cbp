@@ -49,8 +49,6 @@
 		<Unit filename="Bullet.h" />
 		<Unit filename="ComFun.cpp" />
 		<Unit filename="ComFun.h" />
-		<Unit filename="Display.cpp" />
-		<Unit filename="Display.h" />
 		<Unit filename="Enemies.cpp" />
 		<Unit filename="Enemies.h" />
 		<Unit filename="Explosion.cpp" />
@@ -67,7 +65,6 @@
 		<Unit filename="SDL2_mixer.dll" />
 		<Unit filename="SDL2_ttf.dll" />
 		<Unit filename="Text.h" />
-		<Unit filename="helloworld.bmp" />
 		<Unit filename="loot.cpp" />
 		<Unit filename="loot.h" />
 		<Unit filename="main.cpp" />
