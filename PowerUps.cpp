@@ -22,7 +22,6 @@ void PowerUp::Init(PowerUpType type, SDL_Renderer* screen) {
 
     // Load image
     LoadImg(path, screen);
-    std::cout << path;
     active = true;
 }
 

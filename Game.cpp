@@ -215,8 +215,7 @@ void Game::Run() {
             isPowerUpActive = false; // Loại bỏ PowerUp nếu ra khỏi màn hình
         }
 
-    std::cout << "Shield active: " << player1.shieldActive << std::endl;
-std::cout << "PowerUp active: " << isPowerUpActive << std::endl;
+
 
         for(int i = 0;i < player1.GetBulletList().size();i++)
         {
@@ -303,8 +302,9 @@ std::cout << "PowerUp active: " << isPowerUpActive << std::endl;
 
 
 
+        int numEnemies = elapsedTime / 50000;
         //xu li doi tuong enemies
-        for(int j = 0;j < NUM_THREAT;j++)
+        for(int j = 0;j < NUM_THREAT +  numEnemies ;j++)
         {
             Enemies* threat1 = (threats1 + j);
             if(threat1)
@@ -355,6 +355,8 @@ std::cout << "PowerUp active: " << isPowerUpActive << std::endl;
 
                     }
                 }
+
+                std::cout << "NUM_THREAT " << numEnemies << std::endl;
 
                 //check coll player vs threat
                 bool is_col = CheckColli(player1.GetRect(), threat1->GetRect());
