@@ -44,7 +44,7 @@ bool Game::LoadResources() {
     g_sound_music = Mix_LoadMUS("audio//music.wav");
     g_sound_bullet = Mix_LoadWAV("audio//playerShoot.wav");
     g_sound_exp = Mix_LoadWAV("audio//8bitexp.wav");
-    g_sound_niceMusic = Mix_LoadMUS("audio//nice-music.wav");
+    g_sound_niceMusic = Mix_LoadMUS("audio//Star Wars Intro HD 1080p.wav");
     g_sound_powerUp = Mix_LoadWAV("audio//PU.wav");
     if (!r) return false;
     return true;
