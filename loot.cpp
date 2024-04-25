@@ -8,6 +8,8 @@ Loot::Loot()
     _rect.h = loot_h;
     y_val = 0;
     x_val = 0;
+    x_pos = 0;
+    y_pos = 0;
     getHit = false;
 }
 
@@ -26,7 +28,8 @@ void Loot::Update()
     }
     if(getHit)
     {
-        y_val = _rect.x;
+        x_pos = _rect.x;
+        y_pos = _rect.y;
         _rect.x = SCREEN_WIDTH/2;
     }
 }

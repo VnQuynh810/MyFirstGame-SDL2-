@@ -17,6 +17,8 @@ public:
     SDL_Rect GetRect() const { return _rect; }
     int x_val;
     int y_val;
+    int x_pos;
+    int y_pos;
     bool getHit;
 };
 

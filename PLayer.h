@@ -20,7 +20,7 @@ public:
 
     int get_live() {return lives;}
 
-    bool shieldActive;
+   bool shieldActive;
 
 private:
     static const int PLAYER_SPEED = 5;

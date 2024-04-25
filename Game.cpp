@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : gWindow(NULL),gScreen(NULL),back_y(0),score(0),isPowerUpActive(false){}
+Game::Game() : gWindow(NULL),gScreen(NULL),back_y(0),score(0),isPowerUpActive(false) {}
 
 Game::~Game() {}
 
@@ -36,7 +36,6 @@ bool Game::LoadResources() {
 
     UFO.LoadImg("pic//Loot.png",gScreen);
 
-
     p1Boom.LoadImg("pic//Explosion.png",gScreen);
     p1Boom.set_clip();
 
@@ -45,9 +44,8 @@ bool Game::LoadResources() {
     g_sound_music = Mix_LoadMUS("audio//music.wav");
     g_sound_bullet = Mix_LoadWAV("audio//playerShoot.wav");
     g_sound_exp = Mix_LoadWAV("audio//8bitexp.wav");
-    g_sound_niceMusic = Mix_LoadMUS("audio//Star Wars Intro HD 1080p.wav");
+    g_sound_niceMusic = Mix_LoadMUS("audio//nice-music.wav");
     g_sound_powerUp = Mix_LoadWAV("audio//PU.wav");
-
     if (!r) return false;
     return true;
 }
@@ -110,11 +108,13 @@ void Game::Menu()
 
 
 void Game::Run() {
-    startTime = SDL_GetTicks();
+
+    srand(time(NULL));
 
     Mix_PlayMusic( g_sound_music, -1 );
-    Mix_VolumeMusic(40);
+    Mix_VolumeMusic(50);
 
+    player1.Update();
 
     //Generate threats
     for(int i = 0; i < NUM_THREAT;i++)
@@ -138,7 +138,6 @@ void Game::Run() {
 
     bool isQuit = false;
     bool rl = false;
-    bool rl2 = false;
     while (!isQuit) {
         while (SDL_PollEvent(&gEvent) != 0) {
             if (gEvent.type == SDL_QUIT) {
@@ -166,17 +165,15 @@ void Game::Run() {
         textBox.Render(score,"Score: ",0,0);
         liveText.Render(player1.get_live(),"Lifes: ",SCREEN_WIDTH/6,0);
 
-
         if (UFOShown){
             UFO.Render(gScreen);
             UFO.x_val = 2;
             UFO.Update();
         }
 
-        Uint32 currentTime = SDL_GetTicks();
-        Uint32 elapsedTime = currentTime - startTime;
-        elapsedTimeSeconds = elapsedTime / 1000;
-        timeText.Render(elapsedTimeSeconds,"Time: ",SCREEN_WIDTH/3,0);
+
+
+
 
         //UFO Appearence countdown
         if (!UFOShown)
@@ -206,14 +203,20 @@ void Game::Run() {
         if (isPowerUpActive) {
         currentPowerUp.Render(gScreen);
         currentPowerUp.Update();
-        if (CheckColli(player1.GetRect(), currentPowerUp.GetRect())) {
+        }
+
+        if (CheckColli(player1.GetRect(),currentPowerUp.GetRect()) && isPowerUpActive) {
+            isPowerUpActive = false;
             Mix_PlayChannel( -1, g_sound_powerUp, 0 );
             currentPowerUp.ApplyEffect(player1);
-            isPowerUpActive = false; // Loại bỏ PowerUp sau khi sử dụng
+
+             // Loại bỏ PowerUp sau khi sử dụng
         } else if (!currentPowerUp.IsActive()) {
             isPowerUpActive = false; // Loại bỏ PowerUp nếu ra khỏi màn hình
         }
-    }
+
+    std::cout << "Shield active: " << player1.shieldActive << std::endl;
+std::cout << "PowerUp active: " << isPowerUpActive << std::endl;
 
         for(int i = 0;i < player1.GetBulletList().size();i++)
         {
@@ -267,6 +270,8 @@ void Game::Run() {
                     }
                 }
 
+
+
         //xu li trang thai bat tu cua player
 
         if(player1.shieldActive)
@@ -280,7 +285,6 @@ void Game::Run() {
             }
         }
 
-
         if (invincible)
         {
             player1.LoadImg("pic//player-protected.png",gScreen);
@@ -292,7 +296,10 @@ void Game::Run() {
             }
         }
 
-
+    Uint32 currentTime = SDL_GetTicks();
+        Uint32 elapsedTime = currentTime - startTime;
+        elapsedTimeSeconds = elapsedTime / 1000;
+        timeText.Render(elapsedTimeSeconds,"Time: ",SCREEN_WIDTH/3,0);
 
 
 
@@ -378,7 +385,6 @@ void Game::Run() {
                 {
                     Mix_PlayChannel( -1, g_sound_exp, 0 );
                     threat1->Reset(SCREEN_HEIGHT - j*500);
-                    score++;
                 }
                 if (player1.get_live() == 0)
                 {
@@ -428,4 +434,3 @@ void Game::Run() {
 
     Close();
 }
-
