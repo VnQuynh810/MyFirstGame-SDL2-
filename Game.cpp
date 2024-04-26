@@ -301,10 +301,8 @@ void Game::Run() {
         timeText.Render(elapsedTimeSeconds,"Time: ",SCREEN_WIDTH/3,0);
 
 
-
-        int numEnemies = elapsedTime / 50000;
         //xu li doi tuong enemies
-        for(int j = 0;j < NUM_THREAT +  numEnemies ;j++)
+        for(int j = 0;j < NUM_THREAT;j++)
         {
             Enemies* threat1 = (threats1 + j);
             if(threat1)
@@ -356,7 +354,7 @@ void Game::Run() {
                     }
                 }
 
-                std::cout << "NUM_THREAT " << numEnemies << std::endl;
+
 
                 //check coll player vs threat
                 bool is_col = CheckColli(player1.GetRect(), threat1->GetRect());

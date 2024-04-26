@@ -29,12 +29,5 @@ bool InitSDL();
 void QuitSDL();
 SDL_Texture* LoadTexture(SDL_Renderer* renderer, std::string path);
 
-typedef struct Input
-{
-    int left;
-    int right;
-    int up;
-    int down;
-} Input;
 
 bool CheckColli(const SDL_Rect& object1,const SDL_Rect& object2);

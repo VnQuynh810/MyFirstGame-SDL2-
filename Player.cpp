@@ -20,44 +20,6 @@ bool Player::LoadImg(std::string path,SDL_Renderer*screen)
     return ret;
 }
 
-/* void Player::set_clips()
-{
-    if (width > 0 & height > 0)
-    {
-        for (int i = 0; i < 4; ++i) {
-        frame_clip[i].x = i * width;
-        frame_clip[i].y = 0;
-        frame_clip[i].w = width;
-        frame_clip[i].h = height;
-    }
-
-    }
-} */
-
-void Player::Show(SDL_Renderer* des) {
-        LoadImg("pic//player.png",des);
-
-/*   if (input_type.up == 1 ||input_type.down == 1){frame++;} else {frame =0;}
-
-   if(frame >= 4)
-   {
-       frame = 0;
-   }
-*/
-
-
- // SDL_Rect* current = &frame_clip[frame];
- SDL_Rect renderQuad = {_rect.x,_rect.y,width,height};
-
- //  SDL_RenderCopy(des,pObject,current,&renderQuad);
-    int i = 0;
-    frame_clip[i].x = i * width;
-        frame_clip[i].y = 0;
-        frame_clip[i].w = width;
-        frame_clip[i].h = height;
- SDL_RenderCopy (des,pObject,&frame_clip[i],&renderQuad);
-}
-
 void Player::HandleInput(SDL_Event event,SDL_Renderer* screen, Mix_Chunk* shoot_sound) {
     if (event.type == SDL_KEYDOWN && event.key.repeat == 0) {
         switch (event.key.keysym.sym) {

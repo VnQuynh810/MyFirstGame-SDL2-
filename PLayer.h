@@ -27,7 +27,6 @@ private:
     int x_val, y_val;
     int x_pos, y_pos;
     int height, width;
-    Input input_type;
     int frame;
     int status;
     SDL_Rect frame_clip[8];
